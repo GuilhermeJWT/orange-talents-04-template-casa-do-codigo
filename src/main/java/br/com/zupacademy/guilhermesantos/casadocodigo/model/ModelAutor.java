@@ -2,14 +2,14 @@ package br.com.zupacademy.guilhermesantos.casadocodigo.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "autor")
-public class ModelAutor {
+public class ModelAutor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,13 @@ public class ModelAutor {
     private String descricao;
 
     @Column(nullable = false)
-    private LocalDateTime dataRegistro;
+    private LocalDateTime dataRegistro = LocalDateTime.now();
+
+    public ModelAutor(String nome, String email, String descricao) {
+        this.nome = nome;
+        this.email = email;
+        this.descricao = descricao;
+    }
 
     public Long getId() {
         return id;
