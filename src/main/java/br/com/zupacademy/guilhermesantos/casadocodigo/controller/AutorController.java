@@ -1,13 +1,11 @@
 package br.com.zupacademy.guilhermesantos.casadocodigo.controller;
 
 import br.com.zupacademy.guilhermesantos.casadocodigo.dto.ModelAutorDTO;
-import br.com.zupacademy.guilhermesantos.casadocodigo.exception.UniqueEmailException;
 import br.com.zupacademy.guilhermesantos.casadocodigo.model.ModelAutor;
 import br.com.zupacademy.guilhermesantos.casadocodigo.repository.AutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,14 +16,6 @@ public class AutorController {
 
     @Autowired
     private AutorRepository autorRepository;
-
-    @Autowired
-    private UniqueEmailException uniqueEmailValidator;
-
-    @InitBinder
-    public void before(WebDataBinder before){
-        before.addValidators(uniqueEmailValidator);
-    }
 
     @PostMapping(value = "/salvar")
     public ResponseEntity<ModelAutorDTO> salvarAutor(@RequestBody @Valid ModelAutorDTO modelAutorDTO){

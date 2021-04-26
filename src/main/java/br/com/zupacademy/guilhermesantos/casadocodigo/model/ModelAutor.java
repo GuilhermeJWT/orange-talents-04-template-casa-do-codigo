@@ -18,7 +18,6 @@ public class ModelAutor implements Serializable {
     @NotEmpty(message = "O Nome deve ser informado!")
     private String nome;
 
-    @Column(unique = true)
     @Email(message = "E-mail Inválido!")
     @NotEmpty(message = "O E-mail deve ser informado!")
     private String email;
