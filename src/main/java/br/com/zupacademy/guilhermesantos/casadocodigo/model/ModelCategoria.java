@@ -12,9 +12,11 @@ public class ModelCategoria implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
     @NotEmpty(message = "O Nome da Categoria deve ser informado!")
     private String nome;
+
+    //@OneToOne(mappedBy = "categoria", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //private ModelLivro livro;
 
     public ModelCategoria(String nome){
         this.nome = nome;

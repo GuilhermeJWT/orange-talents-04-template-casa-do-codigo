@@ -1,5 +1,7 @@
 package br.com.zupacademy.guilhermesantos.casadocodigo.model;
 
+import br.com.zupacademy.guilhermesantos.casadocodigo.anotation.GenericUniqueColumn;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -28,6 +30,9 @@ public class ModelAutor implements Serializable {
 
     @Column(nullable = false)
     private LocalDateTime dataRegistro = LocalDateTime.now();
+
+    //@OneToOne(mappedBy = "autor", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //private ModelLivro livro = new ModelLivro();
 
     public ModelAutor(String nome, String email, String descricao) {
         this.nome = nome;

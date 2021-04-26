@@ -14,11 +14,6 @@ public class ModelCategoriaDTO {
         return new ModelCategoria(this.nome);
     }
 
-    @Deprecated
-    public ModelCategoriaDTO(){
-
-    }
-
     public ModelCategoriaDTO(String nome){
         this.nome = nome;
     }
