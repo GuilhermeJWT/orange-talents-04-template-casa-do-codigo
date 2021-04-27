@@ -1,10 +1,8 @@
 package br.com.zupacademy.guilhermesantos.casadocodigo.model;
 
-import br.com.zupacademy.guilhermesantos.casadocodigo.anotation.GenericUniqueColumn;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.ForeignKey;
-import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -45,15 +43,15 @@ public class ModelLivro implements Serializable {
 
     @JsonIgnore
     @ManyToOne(optional = false)
-    @ForeignKey(name = "autor_fk")
+    @ForeignKey(name = "autor_id")
     private ModelAutor autor;
 
-    @OneToOne(optional = false)
-    @ForeignKey(name = "categoria_fk")
+    @JsonIgnore
+    @ManyToOne(optional = false)
+    @ForeignKey(name = "categoria_id")
     private ModelCategoria categoria;
 
-
-    public ModelLivro(String titulo, String resumo, String sumario, BigDecimal preco, int numero_pagina, String isbn, LocalDate dataPublicacao) {
+    public ModelLivro(String titulo, String resumo, String sumario, BigDecimal preco, int numero_pagina, String isbn, LocalDate dataPublicacao, ModelAutor autor, ModelCategoria categoria) {
         this.titulo = titulo;
         this.resumo = resumo;
         this.sumario = sumario;
@@ -61,10 +59,21 @@ public class ModelLivro implements Serializable {
         this.numero_pagina = numero_pagina;
         this.isbn = isbn;
         this.dataPublicacao = dataPublicacao;
+        this.autor = autor;
+        this.categoria = categoria;
     }
+
     @Deprecated
     public ModelLivro(){
 
+    }
+
+    public void setAutor(ModelAutor autor) {
+        this.autor = autor;
+    }
+
+    public void setCategoria(ModelCategoria categoria) {
+        this.categoria = categoria;
     }
 
     public Long getId() {

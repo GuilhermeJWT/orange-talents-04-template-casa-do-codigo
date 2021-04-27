@@ -21,14 +21,14 @@ public class ModelAutorDTO{
     @NotEmpty(message = "A Descrição deve ser informado!")
     private String descricao;
 
+    public ModelAutor converteObjetoEntidade() {
+        return new ModelAutor(this.nome, this.email, this.descricao);
+    }
+
     public ModelAutorDTO(String nome, String email, String descricao) {
         this.nome = nome;
         this.email = email;
         this.descricao = descricao;
-    }
-
-    public ModelAutor converteObjetoEntidade() {
-        return new ModelAutor(this.nome, this.email, this.descricao);
     }
 
     public String getEmail() {

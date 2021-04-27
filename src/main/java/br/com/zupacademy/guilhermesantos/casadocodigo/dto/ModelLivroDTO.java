@@ -6,6 +6,7 @@ import br.com.zupacademy.guilhermesantos.casadocodigo.model.ModelCategoria;
 import br.com.zupacademy.guilhermesantos.casadocodigo.model.ModelLivro;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.persistence.EntityManager;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -39,11 +40,11 @@ public class ModelLivroDTO {
     @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate dataPublicacao;
 
-    //private ModelAutor autor;
+    private Long autorId;
 
-    //private ModelCategoria categoria;
+    private Long categoriaId;
 
-    public ModelLivroDTO(String titulo, String resumo, String sumario, BigDecimal preco, int numero_pagina, String isbn, LocalDate dataPublicacao) {
+    public ModelLivroDTO(String titulo, String resumo, String sumario, BigDecimal preco, int numero_pagina, String isbn, LocalDate dataPublicacao, Long autorId, Long categoriaId) {
         this.titulo = titulo;
         this.resumo = resumo;
         this.sumario = sumario;
@@ -51,21 +52,32 @@ public class ModelLivroDTO {
         this.numero_pagina = numero_pagina;
         this.isbn = isbn;
         this.dataPublicacao = dataPublicacao;
+        this.autorId = autorId;
+        this.categoriaId = categoriaId;
     }
 
-    public ModelLivro converteObjetoEntidade(){
-        return new ModelLivro(
-                this.titulo,
-                this.resumo,
-                this.sumario,
-                this.preco,
-                this.numero_pagina,
-                this.isbn,
-                this.dataPublicacao);
+    public ModelLivro converteObjetoEntidade(EntityManager manager){
+
+        ModelAutor autor = manager.find(ModelAutor.class, this.autorId);
+        ModelCategoria categoria = manager.find(ModelCategoria.class, this.categoriaId);
+
+        return new ModelLivro(titulo, resumo, sumario, preco, numero_pagina, isbn, dataPublicacao, autor,categoria);
+    }
+
+    public ModelLivroDTO(){
+
     }
 
     public void setData_publicacao(LocalDate dataPublicacao) {
         this.dataPublicacao = dataPublicacao;
+    }
+
+    public void setAutor(Long autor) {
+        this.autorId = autor;
+    }
+
+    public void setCategoria(Long categoria) {
+        this.categoriaId = categoria;
     }
 
     public String getTitulo() {
@@ -76,4 +88,31 @@ public class ModelLivroDTO {
         return isbn;
     }
 
+    public String getResumo() {
+        return resumo;
+    }
+
+    public String getSumario() {
+        return sumario;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public int getNumero_pagina() {
+        return numero_pagina;
+    }
+
+    public LocalDate getDataPublicacao() {
+        return dataPublicacao;
+    }
+
+    public Long getAutor() {
+        return autorId;
+    }
+
+    public Long getCategoria() {
+        return categoriaId;
+    }
 }

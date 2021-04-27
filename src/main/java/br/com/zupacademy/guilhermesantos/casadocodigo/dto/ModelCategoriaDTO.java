@@ -18,6 +18,10 @@ public class ModelCategoriaDTO {
         this.nome = nome;
     }
 
+    public ModelCategoriaDTO (){
+
+    }
+
     public String getNome() {
         return nome;
     }
