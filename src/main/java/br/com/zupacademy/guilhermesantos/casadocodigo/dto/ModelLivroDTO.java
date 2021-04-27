@@ -6,10 +6,7 @@ import br.com.zupacademy.guilhermesantos.casadocodigo.model.ModelCategoria;
 import br.com.zupacademy.guilhermesantos.casadocodigo.model.ModelLivro;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.validation.constraints.Future;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -27,12 +24,12 @@ public class ModelLivroDTO {
     private String sumario;
 
     @NotNull(message = "O Preço deve ser informado!")
-    @Size(min = 20)
+    @Min(value = 20, message = "O Valor do livro deve ser mais que R$ 20.00")
     private BigDecimal preco;
 
     @NotNull(message = "O Número de páginas deve ser informado!")
-    @Size(min = 100)
-    private Integer numero_pagina;
+    @Min(value = 100, message = "O Livro deve ter mais de 100 páginas!")
+    private int numero_pagina;
 
     @GenericUniqueColumn(domainClass = ModelLivro.class, fieldName = "isbn", message = "Isbn já possui Cadastro! Informe outro")
     @NotEmpty(message = "O Isbn deve ser informado!")
@@ -40,20 +37,20 @@ public class ModelLivroDTO {
 
     @Future
     @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
-    private LocalDate data_publicacao;
+    private LocalDate dataPublicacao;
 
     //private ModelAutor autor;
 
     //private ModelCategoria categoria;
 
-    public ModelLivroDTO(String titulo, String resumo, String sumario, BigDecimal preco, Integer numero_pagina, String isbn, LocalDate data_publicacao) {
+    public ModelLivroDTO(String titulo, String resumo, String sumario, BigDecimal preco, int numero_pagina, String isbn, LocalDate dataPublicacao) {
         this.titulo = titulo;
         this.resumo = resumo;
         this.sumario = sumario;
         this.preco = preco;
         this.numero_pagina = numero_pagina;
         this.isbn = isbn;
-        this.data_publicacao = data_publicacao;
+        this.dataPublicacao = dataPublicacao;
     }
 
     public ModelLivro converteObjetoEntidade(){
@@ -64,7 +61,11 @@ public class ModelLivroDTO {
                 this.preco,
                 this.numero_pagina,
                 this.isbn,
-                this.data_publicacao);
+                this.dataPublicacao);
+    }
+
+    public void setData_publicacao(LocalDate dataPublicacao) {
+        this.dataPublicacao = dataPublicacao;
     }
 
     public String getTitulo() {
