@@ -6,6 +6,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "autor")
@@ -29,8 +31,8 @@ public class ModelAutor implements Serializable {
     @Column(nullable = false)
     private LocalDateTime dataRegistro = LocalDateTime.now();
 
-    //@OneToOne(mappedBy = "autor", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    //private ModelLivro livro = new ModelLivro();
+    @OneToMany(mappedBy = "autor", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ModelLivro> livro = new ArrayList<ModelLivro>();
 
     public ModelAutor(String nome, String email, String descricao) {
         this.nome = nome;
@@ -62,4 +64,9 @@ public class ModelAutor implements Serializable {
     public LocalDateTime getDataRegistro() {
         return dataRegistro;
     }
+
+    public List<ModelLivro> getLivro() {
+        return livro;
+    }
+
 }

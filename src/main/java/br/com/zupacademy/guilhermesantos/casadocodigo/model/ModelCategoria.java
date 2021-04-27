@@ -15,8 +15,8 @@ public class ModelCategoria implements Serializable {
     @NotEmpty(message = "O Nome da Categoria deve ser informado!")
     private String nome;
 
-    //@OneToOne(mappedBy = "categoria", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    //private ModelLivro livro;
+    @OneToOne(mappedBy = "categoria", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private ModelLivro livro;
 
     public ModelCategoria(String nome){
         this.nome = nome;
@@ -33,5 +33,9 @@ public class ModelCategoria implements Serializable {
 
     public String getNome() {
         return nome;
+    }
+
+    public ModelLivro getLivro() {
+        return livro;
     }
 }

@@ -2,7 +2,9 @@ package br.com.zupacademy.guilhermesantos.casadocodigo.model;
 
 import br.com.zupacademy.guilhermesantos.casadocodigo.anotation.GenericUniqueColumn;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.ForeignKey;
+import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -41,13 +43,14 @@ public class ModelLivro implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate dataPublicacao;
 
-    //@OneToOne(optional = false)
-    //@ForeignKey(name = "autor_fk")
-    //private ModelAutor autor;
+    @JsonIgnore
+    @ManyToOne(optional = false)
+    @ForeignKey(name = "autor_fk")
+    private ModelAutor autor;
 
-    //@OneToOne(optional = false)
-    //@ForeignKey(name = "categoria_fk")
-    //private ModelCategoria categoria;
+    @OneToOne(optional = false)
+    @ForeignKey(name = "categoria_fk")
+    private ModelCategoria categoria;
 
 
     public ModelLivro(String titulo, String resumo, String sumario, BigDecimal preco, int numero_pagina, String isbn, LocalDate dataPublicacao) {
@@ -94,5 +97,13 @@ public class ModelLivro implements Serializable {
 
     public LocalDate getDataPublicacao() {
         return dataPublicacao;
+    }
+
+    public ModelAutor getAutor() {
+        return autor;
+    }
+
+    public ModelCategoria getCategoria() {
+        return categoria;
     }
 }
