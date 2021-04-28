@@ -63,6 +63,11 @@ public class ModelLivro implements Serializable {
         this.categoria = categoria;
     }
 
+    public ModelLivro(Long id, String titulo){
+        this.id = id;
+        this.titulo = titulo;
+    }
+
     @Deprecated
     public ModelLivro(){
 
