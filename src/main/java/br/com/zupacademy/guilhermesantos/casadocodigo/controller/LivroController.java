@@ -1,6 +1,7 @@
 package br.com.zupacademy.guilhermesantos.casadocodigo.controller;
 
 import br.com.zupacademy.guilhermesantos.casadocodigo.dto.LivroDetalheDTO;
+import br.com.zupacademy.guilhermesantos.casadocodigo.dto.LivroDetalheSiteDTO;
 import br.com.zupacademy.guilhermesantos.casadocodigo.dto.ModelLivroDTO;
 import br.com.zupacademy.guilhermesantos.casadocodigo.model.ModelLivro;
 import br.com.zupacademy.guilhermesantos.casadocodigo.repository.LivroRepository;
@@ -36,12 +37,26 @@ public class LivroController {
         return new ResponseEntity<ModelLivroDTO>(HttpStatus.OK);
     }
 
-    @GetMapping(value = "/pesquisar")
+    @GetMapping(value = "/listar")
     public Page<LivroDetalheDTO> listaLivrosCadastrados(Pageable paginaLivros){
 
     Page<ModelLivro> modelLivros = livroRepository.findAll(paginaLivros);
 
     return LivroDetalheDTO.converteObjetoEntidade(modelLivros);
+
+    }
+
+    @GetMapping(value = "/buscarlivro/{id}")
+    public ResponseEntity<?> pesquisaLivroId(@PathVariable("id") Long id){
+
+        ModelLivro modelLivro = manager.find(ModelLivro.class, id);
+
+        if(modelLivro ==  null){
+            return ResponseEntity.notFound().build();
+        }
+
+        LivroDetalheSiteDTO livroDetalheSiteDTO = new LivroDetalheSiteDTO(modelLivro);
+        return ResponseEntity.ok(livroDetalheSiteDTO);
 
     }
 
