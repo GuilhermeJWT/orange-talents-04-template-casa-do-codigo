@@ -12,7 +12,6 @@ public class ModelAutorDTO{
     @NotEmpty(message = "O Nome deve ser informado!")
     private String nome;
 
-    @GenericUniqueColumn(domainClass = ModelAutor.class, fieldName = "email", message = "E-mail já possui Cadastro! Informe Outro")
     @Email(message = "E-mail Inválido!")
     @NotEmpty(message = "O E-mail deve ser informado!")
     private String email;

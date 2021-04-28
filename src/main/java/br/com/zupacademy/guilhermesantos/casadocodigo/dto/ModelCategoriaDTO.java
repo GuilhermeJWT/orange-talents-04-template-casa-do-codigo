@@ -6,7 +6,6 @@ import javax.validation.constraints.NotEmpty;
 
 public class ModelCategoriaDTO {
 
-    @GenericUniqueColumn(domainClass = ModelCategoria.class, fieldName = "nome", message = "Nome já possui Cadastro! Informe Outro")
     @NotEmpty(message = "O Nome da Categoria deve ser informado!")
     private String nome;
 

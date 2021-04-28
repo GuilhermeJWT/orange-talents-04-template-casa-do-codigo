@@ -1,5 +1,7 @@
 package br.com.zupacademy.guilhermesantos.casadocodigo.model;
 
+import br.com.zupacademy.guilhermesantos.casadocodigo.anotation.GenericUniqueColumn;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -20,6 +22,7 @@ public class ModelAutor implements Serializable {
     @NotEmpty(message = "O Nome deve ser informado!")
     private String nome;
 
+    @GenericUniqueColumn(domainClass = ModelAutor.class, fieldName = "email", message = "E-mail já possui Cadastro! Informe Outro")
     @Email(message = "E-mail Inválido!")
     @NotEmpty(message = "O E-mail deve ser informado!")
     private String email;

@@ -1,5 +1,6 @@
 package br.com.zupacademy.guilhermesantos.casadocodigo.model;
 
+import br.com.zupacademy.guilhermesantos.casadocodigo.anotation.GenericUniqueColumn;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.ForeignKey;
@@ -18,6 +19,7 @@ public class ModelLivro implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @GenericUniqueColumn(domainClass = ModelLivro.class, fieldName = "titulo", message = "Titulo ja possui Cadastro! Informe outro")
     @NotEmpty(message = "O Titulo deve ser informado!")
     private String titulo;
 
@@ -34,6 +36,7 @@ public class ModelLivro implements Serializable {
 
     private int numero_pagina;
 
+    @GenericUniqueColumn(domainClass = ModelLivro.class, fieldName = "isbn", message = "Isbn já possui Cadastro! Informe outro")
     @NotEmpty(message = "O Isbn deve ser informado!")
     private String isbn;
 

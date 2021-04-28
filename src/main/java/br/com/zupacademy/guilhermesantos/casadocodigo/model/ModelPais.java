@@ -9,26 +9,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "categoria")
-public class ModelCategoria implements Serializable {
+@Table(name = "pais")
+public class ModelPais implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @GenericUniqueColumn(domainClass = ModelCategoria.class, fieldName = "nome", message = "Nome já possui Cadastro! Informe Outro")
-    @NotEmpty(message = "O Nome da Categoria deve ser informado!")
+    @NotEmpty(message = "O Nome do Pais deve ser informado!")
     private String nome;
 
-    @OneToMany(mappedBy = "categoria", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ModelLivro> livro = new ArrayList<ModelLivro>();
+    @OneToMany(mappedBy = "pais", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ModelEstado> estado = new ArrayList<ModelEstado>();
 
-    public ModelCategoria(String nome){
+    public ModelPais(String nome){
         this.nome = nome;
     }
 
     @Deprecated
-    public ModelCategoria(){
+    public ModelPais(){
 
     }
 
@@ -40,7 +39,7 @@ public class ModelCategoria implements Serializable {
         return nome;
     }
 
-    public List<ModelLivro> getLivro() {
-        return livro;
+    public List<ModelEstado> getEstado() {
+        return estado;
     }
 }

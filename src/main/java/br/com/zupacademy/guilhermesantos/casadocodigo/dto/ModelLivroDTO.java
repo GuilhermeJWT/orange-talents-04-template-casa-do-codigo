@@ -14,7 +14,6 @@ import java.time.LocalDate;
 public class ModelLivroDTO {
 
     @NotEmpty(message = "O Titulo deve ser informado!")
-    @GenericUniqueColumn(domainClass = ModelLivro.class, fieldName = "titulo", message = "Titulo ja possui Cadastro! Informe outro")
     private String titulo;
 
     @NotEmpty(message = "O Resumo deve ser informado")
@@ -32,7 +31,6 @@ public class ModelLivroDTO {
     @Min(value = 100, message = "O Livro deve ter mais de 100 páginas!")
     private int numero_pagina;
 
-    @GenericUniqueColumn(domainClass = ModelLivro.class, fieldName = "isbn", message = "Isbn já possui Cadastro! Informe outro")
     @NotEmpty(message = "O Isbn deve ser informado!")
     private String isbn;
 
