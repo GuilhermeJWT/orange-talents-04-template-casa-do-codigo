@@ -36,7 +36,7 @@ public class LivroController {
         return new ResponseEntity<ModelLivroDTO>(HttpStatus.OK);
     }
 
-    @GetMapping(value = "/pesquisar/{id}")
+    @GetMapping(value = "/pesquisar")
     public Page<LivroDetalheDTO> listaLivrosCadastrados(Pageable paginaLivros){
 
     Page<ModelLivro> modelLivros = livroRepository.findAll(paginaLivros);
