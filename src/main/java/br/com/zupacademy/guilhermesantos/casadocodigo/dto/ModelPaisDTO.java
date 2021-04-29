@@ -15,6 +15,11 @@ public class ModelPaisDTO {
         return new ModelPais(this.nome);
     }
 
+    @Deprecated
+    public ModelPaisDTO(){
+
+    }
+
     public ModelPaisDTO(String nome){
         this.nome = nome;
     }

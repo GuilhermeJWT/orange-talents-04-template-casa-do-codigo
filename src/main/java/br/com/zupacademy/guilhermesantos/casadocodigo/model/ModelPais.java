@@ -1,7 +1,5 @@
 package br.com.zupacademy.guilhermesantos.casadocodigo.model;
 
-import br.com.zupacademy.guilhermesantos.casadocodigo.anotation.GenericUniqueColumn;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
@@ -33,6 +31,10 @@ public class ModelPais implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {

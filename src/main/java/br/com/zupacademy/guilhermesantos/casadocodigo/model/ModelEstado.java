@@ -23,8 +23,9 @@ public class ModelEstado implements Serializable {
     @ForeignKey(name = "pais_id")
     private ModelPais pais;
 
-    public ModelEstado(String estado){
+    public ModelEstado(String estado, ModelPais pais){
         this.estado = estado;
+        this.pais = pais;
     }
 
     @Deprecated
@@ -36,6 +37,10 @@ public class ModelEstado implements Serializable {
         this.pais = pais;
     }
 
+    public ModelPais getPais() {
+        return pais;
+    }
+
     public Long getId() {
         return id;
     }
@@ -44,7 +49,4 @@ public class ModelEstado implements Serializable {
         return estado;
     }
 
-    public ModelPais getPais() {
-        return pais;
-    }
 }

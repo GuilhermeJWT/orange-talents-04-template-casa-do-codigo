@@ -1,7 +1,5 @@
 package br.com.zupacademy.guilhermesantos.casadocodigo.model;
 
-import br.com.zupacademy.guilhermesantos.casadocodigo.anotation.GenericUniqueColumn;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
@@ -16,7 +14,6 @@ public class ModelCategoria implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @GenericUniqueColumn(domainClass = ModelCategoria.class, fieldName = "nome", message = "Nome já possui Cadastro! Informe Outro")
     @NotEmpty(message = "O Nome da Categoria deve ser informado!")
     private String nome;
 
