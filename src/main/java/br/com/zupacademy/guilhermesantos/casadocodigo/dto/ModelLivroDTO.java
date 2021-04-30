@@ -6,6 +6,7 @@ import br.com.zupacademy.guilhermesantos.casadocodigo.model.ModelCategoria;
 import br.com.zupacademy.guilhermesantos.casadocodigo.model.ModelLivro;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
@@ -21,6 +22,7 @@ public class ModelLivroDTO {
     @Size(max = 500, message = "O Resumo deve ter no máximo 500 caracteres!")
     private String resumo;
 
+    @Column(columnDefinition = "text")
     @NotEmpty(message = "O Sumário deve ser informado!")
     private String sumario;
 

@@ -1,4 +1,4 @@
-package br.com.zupacademy.guilhermesantos.casadocodigo.anotation;
+package br.com.zupacademy.guilhermesantos.casadocodigo.exception;
 
 import br.com.zupacademy.guilhermesantos.casadocodigo.anotation.GenericUniqueColumn;
 import org.springframework.util.Assert;

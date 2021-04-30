@@ -25,6 +25,7 @@ public class ModelLivro implements Serializable {
     @Size(max = 500, message = "O Resumo deve ter no máximo 500 caracteres!")
     private String resumo;
 
+    @Column(columnDefinition = "text")
     @NotEmpty(message = "O Sumário deve ser informado!")
     private String sumario;
 

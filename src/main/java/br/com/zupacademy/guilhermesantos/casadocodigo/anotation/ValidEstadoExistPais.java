@@ -1,16 +1,16 @@
 package br.com.zupacademy.guilhermesantos.casadocodigo.anotation;
 
-import br.com.zupacademy.guilhermesantos.casadocodigo.exception.GenericUniqueColumnValidator;
+import br.com.zupacademy.guilhermesantos.casadocodigo.exception.GenericEstadoExistValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = {GenericUniqueColumnValidator.class})
-@Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface GenericUniqueColumn {
+@Target(ElementType.TYPE)
+@Constraint(validatedBy = {GenericEstadoExistValidator.class})
+public @interface ValidEstadoExistPais {
 
     String message();
 

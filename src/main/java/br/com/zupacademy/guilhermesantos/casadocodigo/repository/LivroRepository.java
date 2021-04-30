@@ -11,6 +11,4 @@ import java.util.Optional;
 @Repository
 public interface LivroRepository extends JpaRepository<ModelLivro, Long> {
 
-    @Query("select l from ModelLivro l left join fetch l.autor where l.id =:id")
-    Optional<ModelLivro> findByIdFetchLivros(@Param("id") Long id);
 }
